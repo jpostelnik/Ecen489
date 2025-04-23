@@ -32,7 +32,7 @@ class SRAM_CIM:
         if visualize:
             self.visualize_outputs(analog, digital)
 
-        return digital
+        return sum(analog), sum(digital)
 
     def visualize_outputs(self, analog_outputs, quantized_outputs):
         x = np.arange(len(analog_outputs))
@@ -62,4 +62,5 @@ if __name__ == "__main__":
     sram = SRAM_CIM(adc_bits=3)
     input_vec = np.random.choice([-1, 1], size=(128,))
     output = sram.inference(input_vec, visualize=True)
+    print("Quantized Output:", output)
 
